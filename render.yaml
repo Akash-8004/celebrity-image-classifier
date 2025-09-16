@@ -6,7 +6,7 @@ services:
     name: image-classifier-backend
     env: python
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn server.server:app"
+    startCommand: "python server/server.py"
     envVars:
       - key: PYTHON_VERSION
         value: 3.9
@@ -15,8 +15,9 @@ services:
   # =========================
   # Frontend: Static Website
   # =========================
-  - type: static_site
+  - type: web
     name: image-classifier-frontend
+    env: static
     buildCommand: ""
-    publishDir: "UI"
+    staticPublishPath: "UI"
     plan: free
