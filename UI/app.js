@@ -2,7 +2,8 @@ Dropzone.autoDiscover = false;
 
 function init() {
     let dz = new Dropzone("#dropzone", {
-        url: "http://127.0.0.1:5000/classify_image", // send to Flask API, use it when not sending to nginix
+        url: "https://image-classifier-backend-lc9n.onrender.com/classify_image",
+        //url: "http://127.0.0.1:5000/classify_image", // send to Flask API, use it when not sending to nginix
         //url: "/api/classify_image",// send to Flask API, use it when sending to nginix
         maxFiles: 1,
         addRemoveLinks: true,
@@ -36,7 +37,8 @@ function init() {
     dz.on("complete", function (file) {
         let imageData = file.dataURL;
 
-        var url = "http://127.0.0.1:5000/classify_image"; //use it when not sending to nginix
+        var url = "https://image-classifier-backend-lc9n.onrender.com/classify_image";
+        //var url = "http://127.0.0.1:5000/classify_image"; //use it when not sending to nginix
         //var url = "/api/classify_image";//use it when sending to nginix
 
         $.post(url, {
