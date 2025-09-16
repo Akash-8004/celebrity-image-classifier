@@ -1,0 +1,143 @@
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+/* Celebrity Cards */
+.celebrities-section {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.celebrity-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.celebrity-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+.custom-circle-image {
+    width: 80px;
+    height: 80px;
+    border: 3px solid #007bff;
+    transition: border-color 0.3s ease;
+}
+
+.celebrity-card:hover .custom-circle-image {
+    border-color: #28a745;
+}
+
+.custom-circle-image img {
+    object-fit: cover;
+}
+
+.card-title {
+    font-size: 0.9rem;
+    color: #333;
+    margin-bottom: 0;
+}
+
+/* Upload Section */
+.upload-section {
+    border-radius: 15px;
+    border: 2px solid #e9ecef;
+}
+
+.dropzone {
+    border: 2px dashed #007bff !important;
+    border-radius: 10px;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+    min-height: 200px;
+}
+
+.dropzone:hover {
+    border-color: #28a745 !important;
+    background: #e8f5e8;
+}
+
+.dropzone .dz-message {
+    margin: 2em 0;
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    border: none;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,123,255,0.4);
+}
+
+/* Results Section */
+.results-table {
+    border-radius: 10px;
+    border: 1px solid #e9ecef;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.thead-primary th {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    color: white;
+    border: none;
+    font-weight: 600;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f8f9fa;
+}
+
+/* Error Styling */
+.error {
+    border-radius: 10px;
+    border-left: 4px solid #dc3545;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .custom-circle-image {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .card-title {
+        font-size: 0.8rem;
+    }
+    
+    .celebrities-section {
+        padding: 1rem;
+    }
+}
+
+/* Animation for loading states */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.loading {
+    animation: pulse 1.5s infinite;
+}

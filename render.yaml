@@ -1,0 +1,22 @@
+services:
+  # =========================
+  # Backend: Flask API Server
+  # =========================
+  - type: web
+    name: image-classifier-backend
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python server/server.py"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9
+    plan: free   # Free tier plan
+
+  # =========================
+  # Frontend: Static Website
+  # =========================
+  - type: static_site
+    name: image-classifier-frontend
+    buildCommand: ""
+    publishDir: "UI"
+    plan: free   # Free tier plan
