@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celebrity Image Classifier</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="./dropzone.min.css">
+    <link rel="stylesheet" href="./app.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand mx-auto" href="#">
+                <h1 class="mb-0 text-white">🎭 Celebrity Image Classifier</h1>
+            </a>
+        </div>
+    </nav>
+    
+    <div class="hero-section bg-light py-4">
+        <div class="container text-center">
+            <h3 class="text-white mb-0">Upload an image to classify these celebrities</h3>
+        </div>
+    </div>
+    
+
+    <div class="container mt-4">
+        <div class="celebrities-section mb-5">
+            <h4 class="text-center mb-4 text-primary">Supported Celebrities</h4>
+            <div class="row justify-content-center">
+            <div class="col-lg-2 col-md-4 col-sm-6 mb-4 card-wrapper" data-player="Jennifer">
+                <div class="card h-100 shadow-sm border-0 celebrity-card">
+                    <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image mt-3">
+                        <img class="w-100 h-100" src="./images/jeniffer.jpg" alt="Jennifer Lawrence">
+                    </div>
+                    <div class="card-body text-center">
+                        <h6 class="card-title font-weight-bold">Jennifer Lawrence</h6>
+                    </div>
+                </div>
+            </div>            
+            <div class="col-lg-2 col-md-4 col-sm-6 mb-4 card-wrapper" data-player="Modi">
+                <div class="card h-100 shadow-sm border-0 celebrity-card">
+                    <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image mt-3">
+                        <img class="w-100 h-100" src="./images/modi.jpg" alt="Narendra Modi">
+                    </div>
+                    <div class="card-body text-center">
+                        <h6 class="card-title font-weight-bold">Narendra Modi</h6>
+                    </div>
+                </div>
+            </div>            
+            <div class="col-lg-2 col-md-4 col-sm-6 mb-4 card-wrapper" data-player="Ronaldo">
+                <div class="card h-100 shadow-sm border-0 celebrity-card">
+                    <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image mt-3">
+                        <img class="w-100 h-100" src="./images/ronaldo.jpg" alt="Cristiano Ronaldo">
+                    </div>
+                    <div class="card-body text-center">
+                        <h6 class="card-title font-weight-bold">Cristiano Ronaldo</h6>
+                    </div>
+                </div>
+            </div>          
+
+            <div class="col-lg-2 col-md-4 col-sm-6 mb-4 card-wrapper" data-player="Shradha">
+                <div class="card h-100 shadow-sm border-0 celebrity-card">
+                    <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image mt-3">
+                        <img class="w-100 h-100" src="./images/shradha.jpg" alt="Shradha Kapoor">
+                    </div>
+                    <div class="card-body text-center">
+                        <h6 class="card-title font-weight-bold">Shradha Kapoor</h6>
+                    </div>
+                </div>
+            </div>      
+
+            <div class="col-lg-2 col-md-4 col-sm-6 mb-4 card-wrapper" data-player="Virat">
+                <div class="card h-100 shadow-sm border-0 celebrity-card">
+                    <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image mt-3">
+                        <img class="w-100 h-100" src="./images/kohli.webp" alt="Virat Kohli">
+                    </div>
+                    <div class="card-body text-center">
+                        <h6 class="card-title font-weight-bold">Virat Kohli</h6>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="classification-section">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mx-auto">
+                    <div class="upload-section bg-white p-4 rounded shadow-sm">
+                        <h5 class="text-center mb-3 text-primary">Upload Image</h5>
+                        <form action="/file-upload" class="dropzone" id="dropzone">
+                            <div class="dz-message needsclick">
+                                <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-3"></i><br>
+                                <span class="note needsclick h6">Drop files here or click to upload</span>
+                            </div>
+                        </form>
+                        <div class="text-center mt-3">
+                            <button id="submitBtn" type="button" class="btn btn-primary btn-lg px-4">
+                                <i class="fas fa-search mr-2"></i>Classify Image
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-8">
+                    <div class="alert alert-danger error d-none" id="error" role="alert">
+                        <i class="fas fa-exclamation-triangle mr-2"></i>
+                        <strong>Classification Error:</strong> Unable to detect face and eyes properly in the image.
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6" id="resultHolder">
+                        </div>
+                        <div class="col-md-6" id="divClassTable">
+                            <div class="results-table bg-white p-3 rounded shadow-sm">
+                                <h6 class="text-primary mb-3">Classification Results</h6>
+                                <table id="classTable" class="table table-striped">
+                                    <thead class="thead-primary">
+                                        <tr>
+                                            <th>Celebrity</th>
+                                            <th>Confidence</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Jennifer Lawrence</td>
+                                            <td id="score_Jennifer"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Narendra Modi</td>
+                                            <td id="score_Modi"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cristiano Ronaldo</td>
+                                            <td id="score_Ronaldo"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Shradha Kapoor</td>
+                                            <td id="score_Shradha"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Virat Kohli</td>
+                                            <td id="score_Virat"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+
+</body>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="./dropzone.min.js"></script>
+<script src="./app.js"></script>
+</html>
