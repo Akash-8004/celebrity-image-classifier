@@ -20,4 +20,4 @@ services:
     env: static
     buildCommand: ""
     staticPublishPath: "UI"
-    plan: free
+    
