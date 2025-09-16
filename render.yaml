@@ -15,7 +15,8 @@ services:
   # =========================
   # Frontend: Static Website
   # =========================
-  - type: static_site
+  - type: web
+    runtime: static
     name: image-classifier-frontend
     buildCommand: ""
     publishDir: "UI"
